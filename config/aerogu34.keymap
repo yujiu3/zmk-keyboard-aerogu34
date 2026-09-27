@@ -179,7 +179,7 @@ Layer 0:Default 1:Function 2:Number 3:Scroll 4:Mouse
                          +------+------+             +------+------+
 ***********************/
             bindings = <
-&kp TAB               &kp N7        &kp N8        &kp N9        &kp MINUS                          &kp SLSH  &trans    &mkp MB3  &trans     &kp ESC
+&kp TAB               &kp N7        &kp N8        &kp N9        &kp MINUS                          &kp SLASH  &trans    &mkp MB3  &trans     &kp ESC
 &kp BACKSPACE       &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp JP_PLUS                        &kp JP_ASTERISK           &mkp MB1  &kp UP    &mkp MB2   &kp RC(PG_UP)
 &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL                          &kp ENTER    &kp LEFT  &kp DOWN  &kp RIGHT  &kp RC(PG_DN)
                                                                  &kp COMMA    &kp DOT    &kp LANG1  &trans
