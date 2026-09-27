@@ -56,6 +56,12 @@
     combos {
         compatible = "zmk,combos";
 
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <10 11>;
+            layers = <0>;
+        };
+
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 12>;
@@ -65,6 +71,16 @@
         stab {
             bindings = <&kp LS(TAB)>;
             key-positions = <12 13>;
+        };
+
+        lclick {
+            bindings = <&mkp MB1>;
+            key-positions = <16 17>;
+        };
+
+        rclick {
+            bindings = <&mkp MB2>;
+            key-positions = <17 18>;
         };
 
         btreset {
@@ -106,6 +122,7 @@
         default_layer {
             display-name = "Default"; // Layer 0
 /***********************
+Layer 0:Default 1:Function 2:Number 3:Scroll 4:Mouse
 +------+------+------+------+------+                    +------+------+------+------+------+
 |      |      |      |      |      |                    |      |      |      |      |      |
 +------+------+------+------+------+                    +------+------+------+------+------+
@@ -131,19 +148,19 @@
 +------+------+------+------+------+                    +------+------+------+------+------+
 |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  |
 +------+------+------+------+------+                    +------+------+------+------+------+
-|   :  |   !  |   /  |   (  |   [  |                    |   _  |  M1  |   ↑  |  M2  | F11  |
+|   :  |   !  |   /  |   (  |   [  |                    |   _  |   "  |   &  |   $  |   ~  |
 +------+------+------+------+------+                    +------+------+------+------+------+
-|   ;  |   ?  |   \  |   )  |   ]  |                    |   @  |   ←  |   ↓  |   →  | F12  |
+|   ;  |   ?  |   \  |   )  |   ]  |                    |   @  |   '  |   #  |   %  |   |  |
 +------+------+------+------+------+                    +------+------+------+------+------+
                          +------+------+             +------+------+
-                         |      |      |             |      |      |
+                         |      |      |             |      | shft |
                          +------+------+             +------+------+
 ***********************/
             bindings = <
-&kp F1         &kp F2           &kp F3      &kp F4         &kp F5                               &kp F6             &kp F7    &kp F8    &kp F9     &kp F10
-&kp JP_COLON   &kp EXCLAMATION  &kp SLASH   &kp JP_LPAREN  &kp JP_LBRACKET                      &kp JP_UNDERSCORE  &mkp MB1  &kp UP    &mkp MB2   &kp F11
-&kp SEMICOLON  &kp QUESTION     &kp JP_YEN  &kp JP_RPAREN  &kp JP_RBRACKET                      &kp JP_AT          &kp LEFT  &kp DOWN  &kp RIGHT  &kp F12
-                                                            &trans           &trans    &trans     &trans
+&kp F1         &kp F2           &kp F3      &kp LA(F4)         &kp F5                               &kp F6             &kp F7    &kp F8    &kp F9     &kp F10
+&kp JP_COLON   &kp EXCLAMATION  &kp SLASH   &kp JP_LPAREN  &kp JP_LBRACKET                      &kp JP_UNDERSCORE  &kp JP_DQUOTE  &kp JP_AMPERSAND    &mkp DOLLAR   &kp JP_TILDE
+&kp SEMICOLON  &kp QUESTION     &kp JP_YEN  &kp JP_RPAREN  &kp JP_RBRACKET                      &kp JP_AT          &kp JP_QUOTE  &kp HASH  &kp PERCENT  &kp JP_PIPE
+                                                            &trans           &trans    &trans     &kp RIGHT_SHIFT
             >;
         };
 
@@ -151,21 +168,21 @@
             display-name = "Number"; // Layer 2
 /***********************
 +------+------+------+------+------+                    +------+------+------+------+------+
-| tab  |   7  |   8  |   9  |   -  |                    |   [  |      |  M3  |      | esc  |
+| tab  |   7  |   8  |   9  |   -  |                    |   /  |      |  M3  |      | esc  |
 +------+------+------+------+------+                    +------+------+------+------+------+
-|   .  |   4  |   5  |   6  |   +  |                    |   )  |  M1  |   ↑  |  M2  |   +  |
+|  bs  |   4  |   5  |   6  |   +  |                    |   *  |  M1  |   ↑  |  M2  | C+PU |
 +------+------+------+------+------+                    +------+------+------+------+------+
-|   0  |   1  |   2  |   3  |   =  |                    |   {  |   ←  |   ↓  |   →  |   /  |
+|   0  |   1  |   2  |   3  |   =  |                    |  ent |   ←  |   ↓  |   →  | C+PD |
 +------+------+------+------+------+                    +------+------+------+------+------+
                          +------+------+             +------+------+
-                         |  esc |  del |             |lang1 |      |
+                         |   ,  |   .  |             |lang1 |      |
                          +------+------+             +------+------+
 ***********************/
             bindings = <
-&kp TAB               &kp N7        &kp N8        &kp N9        &kp MINUS                          &kp RIGHT_BRACKET  &trans    &mkp MB3  &trans     &kp ESC
-&kp DOT       &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp JP_PLUS                        &kp RPAR           &mkp MB1  &kp UP    &mkp MB2   &kp COLON
-&kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL                          &kp RIGHT_BRACE    &kp LEFT  &kp DOWN  &kp RIGHT  &kp SLASH
-                                                                 &kp ESC    &kp DEL    &kp LANG1  &trans
+&kp TAB               &kp N7        &kp N8        &kp N9        &kp MINUS                          &kp SLSH  &trans    &mkp MB3  &trans     &kp ESC
+&kp EQUAL       &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp JP_PLUS                        &kp JP_ASTERISK           &mkp MB1  &kp UP    &mkp MB2   &kp RC(PGUP)
+&kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp                           &kp ENTER    &kp LEFT  &kp DOWN  &kp RIGHT  &kp RC(PGDN)
+                                                                 &kp COMMA    &kp DOT    &kp LANG1  &trans
             >;
         };
 
@@ -173,9 +190,9 @@
             display-name = "Scroll"; // Layer 3
 /***********************
 +------+------+------+------+------+                    +------+------+------+------+------+
-| bt0  |  bt1 |  bt2 |  bt3 |  bt4 |                    | CG←  | GTab |  M3  |      | CG→  |
+| bt0  |  bt1 |  bt2 |  bt3 |  bt4 |                    | CG←  | GTab |  M3  | ctrl | CG→  |
 +------+------+------+------+------+                    +------+------+------+------+------+
-| unlk |      |      |      |      |                    |  M4  |  M1  |   ↑  |  M2  |  M5  |
+| unlk |      | shft | ctrl |      |                    |  M4  |  M1  |   ↑  |  M2  |  M5  |
 +------+------+------+------+------+                    +------+------+------+------+------+
 |      |      |      |      |      |                    |      |   ←  |   ↓  |   →  |      |
 +------+------+------+------+------+                    +------+------+------+------+------+
@@ -184,8 +201,8 @@
                          +------+------+             +------+------+
 ***********************/
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &kp LC(LG(LEFT))  &kp LG(TAB)  &mkp MB3  &trans     &kp LG(LC(RIGHT))
-&studio_unlock        &trans        &trans        &trans        &trans                          &mkp MB4          &mkp MB1     &kp UP    &mkp MB2   &mkp MB5
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &kp LC(LG(LEFT))  &kp LG(TAB)  &mkp MB3  &kp RCTRL     &kp LG(LC(RIGHT))
+&studio_unlock        &trans        &kp LEFT_SHIFT        &kp LCTRL        &trans                          &mkp MB4          &mkp MB1     &kp UP    &mkp MB2   &mkp MB5
 &trans        &trans        &trans        &trans        &trans                          &trans            &kp LEFT     &kp DOWN  &kp RIGHT  &trans
                                                         &trans        &trans    &trans  &trans
             >;
