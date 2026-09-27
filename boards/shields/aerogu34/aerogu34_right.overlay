@@ -34,6 +34,13 @@
     axis-snap-threshold = <200>;
 };
 
+&zip_temp_layer {
+    excluded-positions = <
+        16 // MB1
+        18 // MB2
+    >;
+};
+
 / {
     deadzone_processor: deadzone_processor {
         compatible = "zmk,input-processor-deadzone";
