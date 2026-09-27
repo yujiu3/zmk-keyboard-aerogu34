@@ -39,6 +39,7 @@
         16 // MB1
         18 // MB2
     >;
+    require-prior-idle-ms = <200>;
 };
 
 / {
@@ -62,7 +63,7 @@
         input-processors = <&deadzone_processor
                             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
                             &mouse_runtime_input_processor
-                            &zip_temp_layer 4 1000
+                            //&zip_temp_layer 4 1000
                             &scroll_runtime_input_processor>;
     };
 };
