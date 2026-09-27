@@ -4,6 +4,9 @@
 #include <input/processors/runtime-input-processor.dtsi>
 #include <dt-bindings/zmk/runtime_input_processor.h>
 #include <dt-bindings/zmk/input_transform.h>
+#include <scroll-snap.dtsi>
+#include <zmk-input-inertia/input/processor/input_inertia.dtsi>
+
 
 &default_transform {
     col-offset = <5>;
@@ -33,6 +36,28 @@
     axis-snap-threshold = <200>;
 };
 
+//追加ここから
+&zip_inertia {
+    // 慣性が始まるまでの待ち時間 (推奨: センサーのポーリングレートの2倍以上)
+    trigger-ms = <35>;
+
+    // --- マウス移動の設定 ---
+    move-decay-factor-int = <90>;       // 更新ごとに保持する速度 (0-99%)
+    move-report-interval-ms = <35>;     // レポート送信間隔 (ms)
+    move-threshold-start = <15>;        // 慣性が発動する最小移動量 (pix/report)
+    move-threshold-stop = <1>;          // 慣性が停止する移動量 (pix/report)
+
+    // --- スクロールの設定 ---
+    scroll-decay-factor-int = <85>;    // スクロール減衰率
+    scroll-report-interval-ms = <65>;  // スクロールレポート間隔 (ms)
+    scroll-threshold-start = <2>;      // 慣性が発動する最小スクロール量 (pix/report)
+    scroll-threshold-stop = <0>;       // 慣性が停止するスクロール量 (pix/report)
+
+    // 任意: Ctrl 押下中はスクロール慣性を停止/抑止する
+    cancel-scroll-inertia-on-ctrl;
+};
+//追加ここまで
+
 / {
     deadzone_processor: deadzone_processor {
         compatible = "zmk,input-processor-deadzone";
@@ -55,7 +80,9 @@
                             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
                             &mouse_runtime_input_processor
                             &zip_temp_layer 4 1000
-                            &scroll_runtime_input_processor>;
+                            &scroll_runtime_input_processor
+                            &zip_inertia  //追加
+                            &zip_scroll_snap>;  //追加
     };
 };
 
