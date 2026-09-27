@@ -10,6 +10,11 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: prospector
       url-base: https://github.com/t-ogura
+    # 追加
+    - name: amgskobo
+      url-base: https://github.com/amgskobo
+    - name: kot149
+      url-base: https://github.com/kot149
   projects:
     # ZMK: cormoran fork, main+dya = ZMK main (Zephyr 4.1) base with DYA Studio RPC
     - name: zmk
@@ -69,5 +74,12 @@ manifest:
       remote: prospector
       revision: main
       path: modules/prospector-zmk-module
+    # 追加
+    - name: zmk-input-inertia
+      remote: amgskobo
+      revision: main
+    - name: zmk-scroll-snap
+      remote: kot149
+      revision: v1
   self:
     path: config
